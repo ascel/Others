@@ -1,0 +1,34 @@
+int n;
+    while(cin >> n) {
+        if(!n)
+            return 0;
+        cin.ignore();
+        vector<char> arr(n), R, D;
+        int ans = INF;
+        for(int i = 0; i < n; i++) {
+            cin >> arr[i];
+            if(arr[i] == 'R') {
+                R.push_back(i);
+            }
+            if(arr[i] == 'D') {
+                D.push_back(i);
+            }
+            if(arr[i] == 'Z') {
+                ans = 0;
+            }
+        }
+        int i_R = 0;
+        int i_D = 0;
+        if(ans) {
+            while(i_R < R.size() and i_D < D.size()) {
+                ans = min(ans, abs(R[i_R] - D[i_D]));
+                if(R[i_R] < D[i_D]) {
+                    i_R++;
+                }
+                else {
+                    i_D++;
+                }
+            }
+        }
+        cout << ans << endl;
+    }
